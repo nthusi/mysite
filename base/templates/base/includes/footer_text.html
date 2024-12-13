@@ -1,0 +1,32 @@
+{% load wagtailcore_tags %}
+{% load navigation_tags %}
+
+<div>
+    {{ footer_text|richtext }}
+</div>
+
+<footer>
+    <p>Built with Wagtail</p>
+
+    {% with linkedin_url=settings.base.NavigationSettngs.linkedin_url github_url=settings.base.NavigationSettings.gtihub_url mastodon_url=settings.base.NavigationSettings.mastodon_url x_url=settings.base.NavigationSettings.x_url %}
+        {% if linkedin_url or github_url or mastodon_url or x_url %}
+            <p>
+                Follow me on:
+                {% if github_url %}
+                    <a href="{{ github_url }}">GitHub</a>
+                {% endif %}
+                {% if linkedin_url %}
+                    <a href="{{ linkedin_url }}"></a>
+                {% endif %}
+                {% if mastodon_url %}
+                    <a href="{{ mastodon_url }}"></a>
+                {% endif %}
+                {% if x_url %}
+                    <a href="{{ x_url }}"></a>
+                {% endif %}
+            </p>
+        {% endif %}
+    {% endwith %}
+
+    {% get_footer_text %}
+</footer>
